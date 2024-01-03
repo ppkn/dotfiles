@@ -1,0 +1,6 @@
+command_timeout = 5000
+[docker_context]
+disabled = true
+[gcloud]
+disabled = true
+
