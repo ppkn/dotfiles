@@ -2,6 +2,8 @@
 # zmodload zsh/zprof
 
 eval "$(starship init zsh)" # zsh theme
+# ls colors
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
 
