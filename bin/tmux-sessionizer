@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+selected=$(find ~/dev ~/personal -mindepth 1 -maxdepth 1 -type d | tr ' ' '\n' | fzf)
+echo $selected
+basename=$(basename "$selected" | sed "s/spiff_//")
+if ! tmux has-session -t=$basename 2> /dev/null; then
+	tmux new-session -ds $basename -c $selected 
+	tmux new-window -c $selected -t $basename: nvim .
+fi
+
+tmux switch-client -t $basename:0
+
