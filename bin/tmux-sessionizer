@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 selected=$(find ~/dev ~/personal -mindepth 1 -maxdepth 1 -type d | tr ' ' '\n' | fzf)
-echo $selected
+
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
 basename=$(basename "$selected" | sed "s/spiff_//")
 if ! tmux has-session -t=$basename 2> /dev/null; then
 	tmux new-session -ds $basename -c $selected 
