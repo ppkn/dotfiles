@@ -1,0 +1,3 @@
+--ignore='.gitignore'
+--ignore='.secrets.example.sh'
+--ignore='.stowrc'
