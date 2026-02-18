@@ -29,8 +29,10 @@ mkcd () {
   cd $1
 }
 
-# postgres
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# local binaries
+export PATH="$HOME/.local/bin:$PATH"
+
+source .secrets.sh
 
 # google cloud
 # . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc # autocomplete
@@ -85,3 +87,21 @@ if [ -f '/Users/dpipkin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/d
 # uncomment this for profiling
 # zprof
 
+# SSL environment variables for Erlang/Elixir
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+
+# Erlang/Elixir SSL configuration for M1 Macs
+export KERL_CONFIGURE_OPTIONS="--disable-jit --with-ssl=/opt/homebrew/opt/openssl@3 --with-readline=/opt/homebrew/opt/readline"
+
+# Yak CLI
+export PATH="/Users/dpipkin/.yak/bin:$PATH"
+
+# OpenSSL configuration for compilation
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib $LDFLAGS"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include $CPPFLAGS"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# Erlang compilation options (Apple Silicon)
+export KERL_CONFIGURE_OPTIONS="--disable-jit --with-ssl=/opt/homebrew/opt/openssl@3"
